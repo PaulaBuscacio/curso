@@ -80,22 +80,18 @@ public class ClienteService {
 		return new Cliente(objDTO.getId(), objDTO.getNome(), objDTO.getEmail(), null, null);
 	}
 	
-	public Cliente fromDTO(ClienteNewDTO objDTO) {
-		Cliente cli = new Cliente(null,objDTO.getNome(), objDTO.getEmail(), 
-				objDTO.getCpfOuCnpj(), TipoCliente.toEnum(objDTO.getTipo()));
-		Cidade cidade = new Cidade(objDTO.getCidadeId(), null, null);
-		
-		Endereco end = new Endereco(null, objDTO.getLogradouro(), objDTO.getNumero(), 
-					objDTO.getComplemento(), objDTO.getBairro(), objDTO.getCep(),cli, cidade);
+	public Cliente fromDTO(ClienteNewDTO objDto) {
+		Cliente cli = new Cliente(null, objDto.getNome(), objDto.getEmail(), objDto.getCpfOuCnpj(), TipoCliente.toEnum(objDto.getTipo()));
+		Cidade cid = new Cidade(objDto.getCidadeId(), null, null);
+		Endereco end = new Endereco(null, objDto.getLogradouro(), objDto.getNumero(), objDto.getComplemento(), objDto.getBairro(), objDto.getCep(), cli, cid);
 		cli.getEnderecos().add(end);
-		cli.getTelefones().add(objDTO.getTelefone1());
-		if(objDTO.getTelefone2() != null) {
-			cli.getTelefones().add(objDTO.getTelefone2());
+		cli.getTelefones().add(objDto.getTelefone1());
+		if (objDto.getTelefone2()!=null) {
+			cli.getTelefones().add(objDto.getTelefone2());
 		}
-		if(objDTO.getTelefone3() != null) {
-			cli.getTelefones().add(objDTO.getTelefone3());
+		if (objDto.getTelefone3()!=null) {
+			cli.getTelefones().add(objDto.getTelefone3());
 		}
-		
 		return cli;
 	}
 	

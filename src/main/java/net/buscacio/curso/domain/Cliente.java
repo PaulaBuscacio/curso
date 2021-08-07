@@ -33,7 +33,7 @@ public class Cliente implements Serializable {
 	@Column(unique=true)
 	private String email;
 	private String cpfOuCnpj;
-	private Integer tipo;
+	private int tipo;
 	
 	@OneToMany(mappedBy="cliente", cascade=CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
@@ -124,11 +124,6 @@ public class Cliente implements Serializable {
 
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
-	}
-
-
-	public void setTipo(Integer tipo) {
-		this.tipo = tipo;
 	}
 
 

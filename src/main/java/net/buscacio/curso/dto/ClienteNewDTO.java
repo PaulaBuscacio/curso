@@ -13,39 +13,43 @@ import net.buscacio.curso.services.validation.ClienteInsert;
 public class ClienteNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@NotEmpty(message="Preenchimento Obrigatório")
-	@Length(min=5, max=120, message="Otamanho deve ser entre 5 e 120 caracteres")
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=5, max=120, message="O tamanho deve ser entre 5 e 120 caracteres")
 	private String nome;
-	
-	@NotEmpty(message="Preenchimento Obrigatório")
+
+	@NotEmpty(message="Preenchimento obrigatório")
 	@Email(message="Email inválido")
 	private String email;
-	
-	@NotEmpty(message="Preenchimento Obrigatório")
+
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String cpfOuCnpj;
-	
+
 	private Integer tipo;
 	
-	@NotEmpty(message="Preenchimento Obrigatório")
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String logradouro;
-	
-	@NotEmpty(message="Preenchimento Obrigatório")
+
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String numero;
-	
+
 	private String complemento;
+
 	private String bairro;
-	
-	@NotEmpty(message="Preenchimento Obrigatório")
+
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String cep;
 	
-	@NotEmpty(message="Preenchimento Obrigatório")
-	private String Telefone1;
-	private String Telefone2;
-	private String Telefone3;
+	@NotEmpty(message="Preenchimento obrigatório")
+	private String telefone1;
+
+	private String telefone2;
 	
+	private String telefone3;
+
 	private Integer cidadeId;
 	
-	public ClienteNewDTO() {}
+	public ClienteNewDTO() {
+	}
 
 	public String getNome() {
 		return nome;
@@ -120,27 +124,27 @@ public class ClienteNewDTO implements Serializable {
 	}
 
 	public String getTelefone1() {
-		return Telefone1;
+		return telefone1;
 	}
 
 	public void setTelefone1(String telefone1) {
-		Telefone1 = telefone1;
+		this.telefone1 = telefone1;
 	}
 
 	public String getTelefone2() {
-		return Telefone2;
+		return telefone2;
 	}
 
 	public void setTelefone2(String telefone2) {
-		Telefone2 = telefone2;
+		this.telefone2 = telefone2;
 	}
 
 	public String getTelefone3() {
-		return Telefone3;
+		return telefone3;
 	}
 
 	public void setTelefone3(String telefone3) {
-		Telefone3 = telefone3;
+		this.telefone3 = telefone3;
 	}
 
 	public Integer getCidadeId() {
@@ -150,7 +154,4 @@ public class ClienteNewDTO implements Serializable {
 	public void setCidadeId(Integer cidadeId) {
 		this.cidadeId = cidadeId;
 	}
-	
-	
-
 }
