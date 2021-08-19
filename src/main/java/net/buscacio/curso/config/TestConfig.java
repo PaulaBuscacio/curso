@@ -8,9 +8,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import net.buscacio.curso.services.DBService;
+import net.buscacio.curso.services.EmailService;
+import net.buscacio.curso.services.MockEmailService;
 
 @Configuration
-@Profile("test")
+@Profile("teste")
 public class TestConfig {
 	
 	@Autowired
@@ -20,6 +22,12 @@ public class TestConfig {
 	public boolean instanciateDatabase() throws ParseException {
 		dbService.instantiateTestDatabase();
 		return true;
+	}
+	
+	@Bean 
+	public EmailService emailService() {
+		return new MockEmailService();
+		
 	}
 
 }
