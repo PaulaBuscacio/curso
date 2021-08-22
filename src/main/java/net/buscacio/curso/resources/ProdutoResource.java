@@ -22,13 +22,7 @@ public class ProdutoResource {
 
 	@Autowired
 	private ProdutoService service;
-//	
-//	@GetMapping
-//	public List<Produto> listar() {
-//		
-//
-//		return lista;
-//	}
+
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Produto> find(@PathVariable Integer id) {
