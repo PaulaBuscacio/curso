@@ -15,11 +15,14 @@ import org.springframework.transaction.annotation.Transactional;
 import net.buscacio.curso.domain.Cidade;
 import net.buscacio.curso.domain.Cliente;
 import net.buscacio.curso.domain.Endereco;
+import net.buscacio.curso.domain.enums.Perfil;
 import net.buscacio.curso.domain.enums.TipoCliente;
 import net.buscacio.curso.dto.ClienteDTO;
 import net.buscacio.curso.dto.ClienteNewDTO;
 import net.buscacio.curso.repositories.ClienteRepository;
 import net.buscacio.curso.repositories.EnderecoRepository;
+import net.buscacio.curso.security.UserSS;
+import net.buscacio.curso.services.exceptions.AuthorizationException;
 import net.buscacio.curso.services.exceptions.DataIntegrityException;
 import net.buscacio.curso.services.exceptions.ObjectNotFoundException;
 
@@ -36,12 +39,19 @@ public class ClienteService {
 	private BCryptPasswordEncoder passwordEncoder;
 	
 	
-	public Cliente find(Integer id) throws ObjectNotFoundException {
+	public Cliente find(Integer id) {
 		
-	Optional<Cliente> cli = clienteRepo.findById(id);
-	
-	return cli.orElseThrow(() -> new ObjectNotFoundException(
-			"Cliente não encontrada! Id: " + id + ", tipo: " + Cliente.class.getName()));
+		UserSS user = UserService.authenticated();
+		
+		if (user==null || !(user.hasRole(Perfil.ADMIN) || id.equals(user.getId()))) {
+			throw new AuthorizationException("Acesso negado");
+		}
+		
+		
+		Optional<Cliente> cli = clienteRepo.findById(id);
+		
+		return cli.orElseThrow(() -> new ObjectNotFoundException(
+				"Cliente não encontrado! Id: " + id + ", tipo: " + Cliente.class.getName()));
 		
 	}
 	
